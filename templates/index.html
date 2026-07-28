@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive &mdash; Enterprise Document Q&A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="stacks">
+    <div class="brand">
+      <span class="brand-mark">&#9776;</span>
+      <div>
+        <h1>Archive</h1>
+        <p class="tagline">internal document Q&amp;A</p>
+      </div>
+    </div>
+
+    <div class="key-panel">
+      <label for="apiKey">Groq API key</label>
+      <input type="password" id="apiKey" placeholder="gsk_...">
+      <label for="modelSelect">Model</label>
+      <select id="modelSelect">
+        {% for m in models %}
+        <option value="{{ m.id }}" {% if m.id == default_model %}selected{% endif %}>{{ m.label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="shelf-header">
+      <h2>Shelf</h2>
+      <label class="upload-btn">
+        + Add PDF
+        <input type="file" id="fileInput" accept="application/pdf" hidden>
+      </label>
+    </div>
+
+    <div id="uploadStatus" class="upload-status"></div>
+
+    <ul id="docList" class="doc-list">
+      {% for doc in documents %}
+      <li class="doc-item" data-doc-id="{{ doc.doc_id }}">
+        <label>
+          <input type="checkbox" class="doc-checkbox" checked value="{{ doc.doc_id }}">
+          <span class="doc-name">{{ doc.doc_name }}</span>
+        </label>
+        <span class="doc-meta">{{ doc.chunks }} sections</span>
+        <button class="doc-remove" title="Remove from shelf">&times;</button>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="doc-empty-hint" id="emptyHint" {% if documents %}style="display:none;"{% endif %}>
+      No documents yet. Add a PDF to start querying it.
+    </p>
+  </aside>
+
+  <main class="reading-room">
+    <div class="chat-scroll" id="chatScroll">
+      <div class="welcome-card">
+        <p class="eyebrow">Reading room</p>
+        <h2>Ask your documents anything.</h2>
+        <p>Every answer below is grounded only in what's on the shelf, with the page cited so you can check it yourself.</p>
+      </div>
+    </div>
+
+    <form class="composer" id="composerForm">
+      <textarea id="queryInput" placeholder="Ask a question about the documents on your shelf&hellip;" rows="1" required></textarea>
+      <button type="submit" id="sendBtn">Ask</button>
+    </form>
+  </main>
+
+</div>
+
+<template id="tpl-user-msg">
+  <div class="msg msg-user">
+    <div class="msg-bubble"></div>
+  </div>
+</template>
+
+<template id="tpl-assistant-msg">
+  <div class="msg msg-assistant">
+    <div class="msg-bubble"></div>
+    <div class="sources"></div>
+  </div>
+</template>
+
+<template id="tpl-source-card">
+  <div class="source-card">
+    <span class="source-tab"></span>
+    <span class="source-doc"></span>
+    <span class="source-page"></span>
+    <span class="source-score"></span>
+  </div>
+</template>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.5/purify.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

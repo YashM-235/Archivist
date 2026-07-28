@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+*.pyc
+data/uploads/*.pdf
+data/vector_store/*.faiss
+data/vector_store/*.pkl
+.env
+.venv/
