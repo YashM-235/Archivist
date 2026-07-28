@@ -244,5 +244,5 @@ MIT License.
 ---
 
 <p align="center">
-<sub>Built as part of a final-year capstone project.</sub>
+<sub>Built as part of a final-year project.</sub>
 </p>
