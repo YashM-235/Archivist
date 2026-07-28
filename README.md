@@ -1,7 +1,6 @@
 <div align="center">
-# 📚 Archivist
-
-### Ask your documents anything - grounded, cited, and yours.
+  
+<img src="https://capsule-render.vercel.app/api?type=venom&color=0:0d0d0d,30:2d0b0b,60:7f1d1d,100:dc2626&height=220&section=header&text=Archivist&fontSize=82&fontColor=ff6b6b&fontAlignY=55&animation=twinkling&stroke=ffe5e5&strokeWidth=2&desc=Ask%20your%20documents%20anything%20-%20grounded,%20cited,%20and%20yours.&descSize=18&descAlignY=75&descColor=ffffff"/>
 
 An enterprise-grade Retrieval-Augmented Generation (RAG) system for querying your own PDFs-books, novels, research papers, manuals, reports, or policy documents-in natural language, with every answer grounded in retrieved context and traced back to the exact page it came from.
 
