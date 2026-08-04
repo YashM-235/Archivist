@@ -243,5 +243,5 @@ MIT License.
 ---
 
 <p align="center">
-<sub>Built as part of a final-year project.</sub>
+<sub>Built as part of a self project.</sub>
 </p>
